@@ -1,26 +1,237 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-saffron: #e85d04;
+  --color-saffron-light: #f4a261;
+  --color-saffron-dark: #c44900;
+  --color-forest: #1a472a;
+  --color-forest-mid: #2d6a4f;
+  --color-gold: #d4a017;
+  --color-cream: #fafaf8;
+  --color-surface: #f5f0eb;
+  --color-dark: #1c1c1e;
+  --color-muted: #6b7280;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-serif: var(--font-dm-serif), Georgia, serif;
+  --font-sans: var(--font-jakarta), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-saffron);
+  color: #fff;
+}
+
+/* Scroll reveal — driven by ScrollReveal, which adds .visible on intersect. */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.4s; }
+.d6 { transition-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero */
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-zoom {
+  animation: heroZoom 9s ease-out forwards;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(44px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.pulse-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(244, 162, 97, 0.5); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(244, 162, 97, 0); }
+}
+.scroll-line {
+  animation: scrollPulse 1.6s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.4); }
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* About floating badge */
+.float-badge {
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Activities — top accent bar wipes in on hover */
+.act-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-saffron);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.act-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Gallery — caption rises out of the gradient on hover */
+.g-item::after {
+  content: attr(data-cap);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24px 18px 14px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.35s,
+    transform 0.35s;
+}
+.g-item:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* How It Works — dotted field */
+.how-dots::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Donate CTA — heart tile */
+.dcta-hearts::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 10c-4-8-18-6-18 4 0 8 18 20 18 20s18-12 18-20c0-10-14-12-18-4z' fill='%23fff'/%3E%3C/svg%3E");
+  background-size: 80px;
+}
+
+/* Form success pop */
+.pop-in {
+  animation: popIn 0.5s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Nav underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-saffron);
+  transition: width 0.28s;
+}
+.nav-link:hover::after {
+  width: 100%;
 }
