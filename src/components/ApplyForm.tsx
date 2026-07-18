@@ -35,19 +35,48 @@ function Field({
   );
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+
 export default function ApplyForm() {
   const [tab, setTab] = useState<Tab>("help");
   const [submitted, setSubmitted] = useState<Tab | null>(null);
   const [amount, setAmount] = useState(2500);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const switchTab = (next: Tab) => {
     setTab(next);
     setSubmitted(null);
+    setError(null);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(tab);
+    setSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(event.currentTarget);
+    const payload: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      payload[key] = String(value);
+    });
+
+    try {
+      const res = await fetch(`${API_URL}/api/public/submissions`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          type: tab === "help" ? "HELP" : "DONATE",
+          payload,
+        }),
+      });
+      if (!res.ok) throw new Error("Submission failed");
+      setSubmitted(tab);
+    } catch {
+      setError("Something went wrong sending your request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -114,6 +143,7 @@ export default function ApplyForm() {
               <div className="grid gap-5 min-[900px]:grid-cols-2">
                 <Field label="Full Name *">
                   <input
+                    name="name"
                     className={fieldClass}
                     type="text"
                     placeholder="Patient / Applicant name"
@@ -122,6 +152,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Mobile Number *">
                   <input
+                    name="mobile"
                     className={fieldClass}
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
@@ -130,6 +161,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="District, Karnataka *">
                   <input
+                    name="district"
                     className={fieldClass}
                     type="text"
                     placeholder="e.g. Udupi, Mangaluru…"
@@ -138,6 +170,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Amount Required (₹) *">
                   <input
+                    name="amountRequired"
                     className={fieldClass}
                     type="number"
                     placeholder="e.g. 50000"
@@ -146,6 +179,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Medical Condition *">
                   <input
+                    name="condition"
                     className={fieldClass}
                     type="text"
                     placeholder="Brief diagnosis / treatment needed"
@@ -154,6 +188,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Hospital / Clinic Name">
                   <input
+                    name="hospital"
                     className={fieldClass}
                     type="text"
                     placeholder="Where treatment is ongoing"
@@ -161,6 +196,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Describe the Situation *" full>
                   <textarea
+                    name="situation"
                     className={`${fieldClass} resize-y`}
                     rows={4}
                     placeholder="Please share the medical situation and how the funds will be used…"
@@ -170,10 +206,16 @@ export default function ApplyForm() {
                 <div className="min-[900px]:col-span-2">
                   <button
                     type="submit"
-                    className="w-full cursor-pointer rounded-[14px] bg-saffron p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(232,93,4,0.3)]"
+                    disabled={submitting}
+                    className="w-full cursor-pointer rounded-[14px] bg-saffron p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(232,93,4,0.3)] disabled:opacity-60"
                   >
-                    Submit Application →
+                    {submitting ? "Sending…" : "Submit Application →"}
                   </button>
+                  {error && (
+                    <p className="mt-3 text-center text-sm font-semibold text-[#B3261E]">
+                      {error}
+                    </p>
+                  )}
                   <p className="mt-3 text-center text-xs text-muted">
                     Your information is kept confidential and shared only with
                     our review committee.
@@ -186,6 +228,7 @@ export default function ApplyForm() {
               <div className="grid gap-5 min-[900px]:grid-cols-2">
                 <Field label="Full Name *">
                   <input
+                    name="name"
                     className={fieldClass}
                     type="text"
                     placeholder="Your name"
@@ -194,6 +237,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Email Address *">
                   <input
+                    name="email"
                     className={fieldClass}
                     type="email"
                     placeholder="you@email.com"
@@ -202,6 +246,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Mobile Number *">
                   <input
+                    name="mobile"
                     className={fieldClass}
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
@@ -210,6 +255,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Occupation">
                   <input
+                    name="occupation"
                     className={fieldClass}
                     type="text"
                     placeholder="Your profession"
@@ -235,6 +281,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Donation Amount (₹) *">
                   <input
+                    name="amount"
                     className={fieldClass}
                     type="number"
                     value={amount}
@@ -243,7 +290,7 @@ export default function ApplyForm() {
                   />
                 </Field>
                 <Field label="Frequency">
-                  <select className={fieldClass} defaultValue="One-time">
+                  <select name="frequency" className={fieldClass} defaultValue="One-time">
                     <option>One-time</option>
                     <option>Monthly</option>
                     <option>Yearly</option>
@@ -251,6 +298,7 @@ export default function ApplyForm() {
                 </Field>
                 <Field label="Message (optional)" full>
                   <textarea
+                    name="message"
                     className={`${fieldClass} resize-y`}
                     rows={3}
                     placeholder="Any message for the community…"
@@ -259,10 +307,16 @@ export default function ApplyForm() {
                 <div className="min-[900px]:col-span-2">
                   <button
                     type="submit"
-                    className="w-full cursor-pointer rounded-[14px] bg-forest p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(26,71,42,0.3)]"
+                    disabled={submitting}
+                    className="w-full cursor-pointer rounded-[14px] bg-forest p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(26,71,42,0.3)] disabled:opacity-60"
                   >
-                    Donate to Team Ekata ♡
+                    {submitting ? "Sending…" : "Donate to Team Ekata ♡"}
                   </button>
+                  {error && (
+                    <p className="mt-3 text-center text-sm font-semibold text-[#B3261E]">
+                      {error}
+                    </p>
+                  )}
                 </div>
               </div>
             </form>

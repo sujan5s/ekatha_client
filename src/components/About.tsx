@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { AboutContent } from "@/lib/content";
 
 const features = [
   {
@@ -18,20 +19,24 @@ const features = [
   },
 ];
 
-export default function About() {
+export default function About({ about }: { about?: AboutContent }) {
   return (
     <section id="about" className="bg-cream px-8 py-28">
       <div className="mx-auto max-w-320">
         <div className="grid items-center gap-20 min-[900px]:grid-cols-2">
           <div className="reveal-left relative">
-            <div className="group overflow-hidden rounded-[28px] shadow-[0_32px_80px_rgba(0,0,0,0.14)]">
-              <Image
-                src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=700&q=80"
-                alt="Community support"
-                width={700}
-                height={520}
-                className="h-130 w-full object-cover transition-transform duration-900 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
-              />
+            <div className="group overflow-hidden rounded-[28px] bg-[#E8E0D5] shadow-[0_32px_80px_rgba(0,0,0,0.14)]">
+              {about?.imageUrl ? (
+                <Image
+                  src={about.imageUrl}
+                  alt="Community support"
+                  width={700}
+                  height={520}
+                  className="h-130 w-full object-cover transition-transform duration-900 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
+                />
+              ) : (
+                <div className="h-130 w-full" />
+              )}
             </div>
 
             <div className="reveal-scale d3 float-badge absolute -top-6 -right-6 rounded-[20px] bg-gradient-to-br from-saffron to-saffron-dark px-8 py-[22px] text-center text-white shadow-[0_16px_48px_rgba(232,93,4,0.35)]">
@@ -45,15 +50,17 @@ export default function About() {
               </div>
             </div>
 
-            <div className="reveal-scale d4 absolute -bottom-10 -left-10 h-45 w-45 overflow-hidden rounded-[22px] border-6 border-cream shadow-[0_20px_48px_rgba(0,0,0,0.18)]">
-              <Image
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&q=80"
-                alt="Helping hands"
-                width={400}
-                height={400}
-                className="h-full w-full object-cover"
-              />
-            </div>
+            {about?.image2Url ? (
+              <div className="reveal-scale d4 absolute -bottom-10 -left-10 h-45 w-45 overflow-hidden rounded-[22px] border-6 border-cream shadow-[0_20px_48px_rgba(0,0,0,0.18)]">
+                <Image
+                  src={about.image2Url}
+                  alt="Helping hands"
+                  width={400}
+                  height={400}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : null}
           </div>
 
           <div className="reveal-right">

@@ -1,57 +1,45 @@
 "use client";
 
 import { useCounter, useInView } from "@/lib/hooks";
-
-const stats = [
-  { icon: "🤝", target: 248, suffix: "+", label: "Families Helped" },
-  { icon: "💰", target: 42, suffix: "L+", label: "Total Donations (₹)" },
-  { icon: "👥", target: 1200, suffix: "+", label: "Active Members" },
-  { icon: "🗓️", target: 6, suffix: " yrs", label: "Years of Service" },
-];
+import type { StatContent } from "@/lib/content";
 
 function Stat({
-  icon,
-  target,
-  suffix,
-  label,
+  stat,
   trigger,
   index,
+  total,
 }: {
-  icon: string;
-  target: number;
-  suffix: string;
-  label: string;
+  stat: StatContent;
   trigger: boolean;
   index: number;
+  total: number;
 }) {
-  const value = useCounter(target, 2200, trigger);
+  const value = useCounter(stat.value, 2200, trigger);
 
-  // Dividers sit between columns only, so they must drop at the row edge —
-  // which moves from the 4th cell to the 2nd once the grid is two-up.
-  const divider =
-    index === 3
-      ? ""
-      : index === 1
-        ? "border-r border-[#EDE8E3] max-[900px]:border-r-0"
-        : "border-r border-[#EDE8E3]";
+  // Dividers sit between columns only, dropping at the row edge (which moves
+  // from the last cell to the 2nd once the grid is two-up).
+  const isRowEnd = index === total - 1;
+  const divider = isRowEnd
+    ? ""
+    : index % 2 === 1
+      ? "border-r border-[#EDE8E3] max-[900px]:border-r-0"
+      : "border-r border-[#EDE8E3]";
 
   return (
-    <div
-      className={`reveal d${index + 1} px-6 py-7 text-center ${divider}`}
-    >
-      <div className="mb-[10px] text-[26px]">{icon}</div>
+    <div className={`reveal d${index + 1} px-6 py-7 text-center ${divider}`}>
+      <div className="mb-[10px] text-[26px]">{stat.icon}</div>
       <div className="font-display text-[52px] leading-none font-bold text-saffron">
         {value.toLocaleString()}
-        {suffix}
+        {stat.suffix}
       </div>
       <div className="mt-2 text-[13px] font-medium tracking-[0.02em] text-muted">
-        {label}
+        {stat.label}
       </div>
     </div>
   );
 }
 
-export default function Stats() {
+export default function Stats({ stats }: { stats: StatContent[] }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.5);
 
   return (
@@ -61,7 +49,13 @@ export default function Stats() {
     >
       <div className="mx-auto grid max-w-320 grid-cols-2 px-8 py-4 min-[900px]:grid-cols-4">
         {stats.map((stat, i) => (
-          <Stat key={stat.label} {...stat} trigger={inView} index={i} />
+          <Stat
+            key={stat.id}
+            stat={stat}
+            trigger={inView}
+            index={i}
+            total={stats.length}
+          />
         ))}
       </div>
     </div>

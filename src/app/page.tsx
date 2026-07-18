@@ -17,27 +17,30 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Stats from "@/components/Stats";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
+import { getHomeContent } from "@/lib/content";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getHomeContent();
+
   return (
     <>
       <ScrollReveal />
       <ScrollProgress />
       <Navbar />
       <main>
-        <Hero />
+        <Hero hero={content.hero} />
         <Marquee />
-        <Stats />
-        <About />
+        <Stats stats={content.stats} />
+        <About about={content.about} />
         <Activities />
-        <Impact />
-        <Gallery />
+        <Impact impact={content.impact} />
+        <Gallery gallery={content.gallery} />
         <HowItWorks />
-        <Testimonials />
-        <Team />
+        <Testimonials testimonials={content.testimonials} />
+        <Team team={content.team} />
         <Partners />
         <DonateCta />
-        <Faq />
+        <Faq faqs={content.faqs} />
         <ApplyForm />
       </main>
       <Footer />
