@@ -73,24 +73,27 @@ export default function Impact({ impact }: { impact: ImpactContent }) {
   return (
     <section id="impact" className="bg-white px-8 py-28">
       <div className="mx-auto max-w-320">
-        <div className="grid items-center gap-18 min-[900px]:grid-cols-2">
-          <div ref={ref} className="reveal-left">
-            <SectionHeading
-              tag="Our Impact"
-              heading={
-                <>
-                  Where every <em className="text-saffron italic">rupee</em> goes
-                </>
-              }
-              sub="Full transparency is our promise. Here's how contributions were allocated this year."
-            />
-            <div className="mt-8 flex flex-col gap-3">
-              {impact.bars.map((bar) => (
-                <Bar key={bar.id} bar={bar} trigger={inView} />
-              ))}
-            </div>
+        <div ref={ref} className="reveal mb-12">
+          <SectionHeading
+            tag="Our Impact"
+            heading={
+              <>
+                Where every <em className="text-saffron italic">rupee</em> goes
+              </>
+            }
+            sub="Full transparency is our promise. Here's how contributions were allocated this year."
+          />
+        </div>
+
+        <div className="grid items-stretch gap-12 min-[900px]:grid-cols-2">
+          {/* Left Column: Percentage Bars */}
+          <div className="reveal-left flex flex-col justify-center gap-3">
+            {impact.bars.map((bar) => (
+              <Bar key={bar.id} bar={bar} trigger={inView} />
+            ))}
           </div>
 
+          {/* Right Column: Photo Card aligned with the percentage bars */}
           <div className="reveal-right group relative overflow-hidden rounded-[28px] shadow-[0_28px_72px_rgba(0,0,0,0.14)] transition-all duration-500 hover:shadow-[0_36px_84px_rgba(0,0,0,0.22)]">
             {impact.quote.imageUrl ? (
               <Image
@@ -98,7 +101,7 @@ export default function Impact({ impact }: { impact: ImpactContent }) {
                 alt="Medical care"
                 width={700}
                 height={480}
-                className="h-120 w-full object-cover object-[center_35%] transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover-zoom-in-out"
+                className="h-full min-h-[400px] w-full object-cover object-[center_35%] transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover-zoom-in-out"
               />
             ) : null}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent via-[rgba(20,20,22,0.6)] to-[rgba(20,20,22,0.92)] px-8 pt-12 pb-8 text-white transition-colors duration-300 group-hover:to-[rgba(20,20,22,0.96)]">
