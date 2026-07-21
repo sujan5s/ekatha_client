@@ -43,6 +43,7 @@ body {
     opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal-left {
   opacity: 0;
   transform: translateX(-48px);
@@ -50,6 +51,7 @@ body {
     opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal-right {
   opacity: 0;
   transform: translateX(48px);
@@ -57,6 +59,7 @@ body {
     opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal-scale {
   opacity: 0;
   transform: scale(0.85);
@@ -64,24 +67,45 @@ body {
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal.visible,
 .reveal-left.visible,
 .reveal-right.visible {
   opacity: 1;
   transform: none;
 }
+
 .reveal-scale.visible {
   opacity: 1;
   transform: scale(1);
 }
-.d1 { transition-delay: 0.08s; }
-.d2 { transition-delay: 0.16s; }
-.d3 { transition-delay: 0.24s; }
-.d4 { transition-delay: 0.32s; }
-.d5 { transition-delay: 0.4s; }
-.d6 { transition-delay: 0.48s; }
+
+.d1 {
+  transition-delay: 0.08s;
+}
+
+.d2 {
+  transition-delay: 0.16s;
+}
+
+.d3 {
+  transition-delay: 0.24s;
+}
+
+.d4 {
+  transition-delay: 0.32s;
+}
+
+.d5 {
+  transition-delay: 0.4s;
+}
+
+.d6 {
+  transition-delay: 0.48s;
+}
 
 @media (prefers-reduced-motion: reduce) {
+
   .reveal,
   .reveal-left,
   .reveal-right,
@@ -96,60 +120,119 @@ body {
 .hero-grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
 .hero-zoom {
   animation: heroZoom 9s ease-out forwards;
 }
+
 @keyframes heroZoom {
-  from { transform: scale(1.12); }
-  to { transform: scale(1); }
+  from {
+    transform: scale(1.12);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
+
 .fade-up {
   opacity: 0;
   animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(44px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(44px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s ease forwards;
 }
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 .pulse-dot {
   animation: pulse 2s ease-in-out infinite;
 }
+
 @keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(244, 162, 97, 0.5); }
-  50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(244, 162, 97, 0); }
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(244, 162, 97, 0.5);
+  }
+
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 6px rgba(244, 162, 97, 0);
+  }
 }
+
 .scroll-line {
   animation: scrollPulse 1.6s ease-in-out infinite;
 }
+
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(0.4); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(0.4);
+  }
 }
 
 /* Marquee */
 .marquee-track {
   animation: marquee 28s linear infinite;
 }
+
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* About floating badge */
 .float-badge {
   animation: float 4s ease-in-out infinite;
 }
+
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 /* Activities — top accent bar wipes in on hover */
@@ -165,6 +248,7 @@ body {
   transform-origin: left;
   transition: transform 0.4s;
 }
+
 .act-card:hover::before {
   transform: scaleX(1);
 }
@@ -187,6 +271,7 @@ body {
     opacity 0.35s,
     transform 0.35s;
 }
+
 .g-item:hover::after {
   opacity: 1;
   transform: none;
@@ -214,10 +299,13 @@ body {
 }
 
 @keyframes heartPulsePattern {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.08;
   }
+
   50% {
     transform: scale(1.06);
     opacity: 0.16;
@@ -229,12 +317,15 @@ body {
     transform: translateY(100%) scale(0.7) rotate(0deg);
     opacity: 0;
   }
+
   25% {
     opacity: 0.5;
   }
+
   75% {
     opacity: 0.5;
   }
+
   100% {
     transform: translateY(-130%) scale(1.2) rotate(18deg);
     opacity: 0;
@@ -249,9 +340,17 @@ body {
 .pop-in {
   animation: popIn 0.5s cubic-bezier(0.22, 1.4, 0.36, 1);
 }
+
 @keyframes popIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Nav underline */
@@ -265,33 +364,54 @@ body {
   background: var(--color-saffron);
   transition: width 0.28s;
 }
+
 .nav-link:hover::after {
   width: 100%;
 }
 
 /* Impact progress bar shimmer */
 @keyframes barShimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
 }
+
 .animate-bar-shimmer {
   animation: barShimmer 1.8s ease-in-out infinite;
 }
 
 /* Continuous breathing zoom in-out effect on hover */
 @keyframes zoomInOut {
-  0%, 100% { transform: scale(1.03); }
-  50% { transform: scale(1.12); }
+
+  0%,
+  100% {
+    transform: scale(1.03);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
 }
+
 .group:hover .group-hover-zoom-in-out {
   animation: zoomInOut 3.5s ease-in-out infinite;
 }
 
 /* Stories section continuous slow auto-scroll carousel */
 @keyframes storyScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 .animate-story-scroll {
   animation: storyScroll 45s linear infinite;
 }
@@ -300,33 +420,20 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-/* Custom site-wide scrollbar */
+/* Hide scrollbar site-wide but allow scrolling */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 9999px;
-  border: 2px solid var(--color-surface);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-saffron);
-}
-
-/* Firefox custom scrollbar */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-saffron) var(--color-surface);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

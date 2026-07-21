@@ -48,8 +48,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fraunces.variable} ${dmSerif.variable} ${jakarta.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
