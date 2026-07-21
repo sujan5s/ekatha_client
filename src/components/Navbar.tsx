@@ -52,7 +52,7 @@ export default function Navbar() {
               scrolled ? "text-dark" : "text-white"
             }`}
           >
-            Team <span className="text-saffron">Ekata</span>
+            Team <span className="text-saffron">Ekatha</span>
           </span>
         </Link>
 
