@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SpecularButton from "@/components/SpecularButton";
@@ -15,26 +16,40 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
-  const scrolled = useScrollY() > 50 || !isHomePage;
+  const isHomePage = !pathname || pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isHomePage) {
+        setScrolled(true);
+      } else {
+        setScrolled(window.scrollY > 50);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-100 pointer-events-none flex justify-center px-4 pt-3 transition-all duration-500">
+    <header className="fixed inset-x-0 top-0 z-100 pointer-events-none flex justify-center px-2 sm:px-4 pt-2 sm:pt-3 transition-all duration-500">
       <nav
         className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ${
           scrolled
-            ? "h-16 w-full max-w-5xl rounded-full bg-white/85 px-6 shadow-lg shadow-black/5 backdrop-blur-md border border-white/50 ring-1 ring-black/5"
-            : "h-20 w-full max-w-7xl px-8 bg-transparent"
+            ? "h-14 sm:h-16 w-full max-w-5xl rounded-full bg-white/85 px-4 sm:px-6 shadow-lg shadow-black/5 backdrop-blur-md border border-white/50 ring-1 ring-black/5"
+            : "h-16 sm:h-20 w-full max-w-7xl px-4 sm:px-8 bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_4px_16px_rgba(232,93,4,0.3)]">
-            <span className="text-sm font-extrabold tracking-[-0.5px] text-white">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_4px_16px_rgba(232,93,4,0.3)]">
+            <span className="text-xs sm:text-sm font-extrabold tracking-[-0.5px] text-white">
               TE
             </span>
           </div>
           <span
-            className={`font-display text-2xl font-bold transition-colors duration-300 ${
+            className={`font-display text-xl sm:text-2xl font-bold whitespace-nowrap transition-colors duration-300 ${
               scrolled ? "text-dark" : "text-white"
             }`}
           >

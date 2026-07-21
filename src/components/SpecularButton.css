@@ -67,12 +67,17 @@
   inset: -20px;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
+  background: transparent !important;
 }
 
 .specular-button__fx canvas {
   display: block;
   width: 100%;
   height: 100%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
 }
 
 .specular-button__label {
