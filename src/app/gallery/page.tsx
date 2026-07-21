@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import SpecularButton from "@/components/SpecularButton";
-import { DEFAULT_GALLERY, type GalleryContent } from "@/lib/content";
+import { type GalleryContent } from "@/lib/content";
 
 const spanClass: Record<GalleryContent["span"], string> = {
   NORMAL: "col-span-1 row-span-1",
@@ -17,21 +17,19 @@ const spanClass: Record<GalleryContent["span"], string> = {
 };
 
 export default function DedicatedGalleryPage() {
-  const [photos, setPhotos] = useState<GalleryContent[]>(DEFAULT_GALLERY);
+  const [photos, setPhotos] = useState<GalleryContent[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
-  const [filter, setFilter] = useState<string>("ALL");
 
   useEffect(() => {
-    // Fetch live photos if available
     fetch("http://localhost:8080/api/public/home")
       .then((res) => res.json())
       .then((data) => {
-        if (data?.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+        if (data?.gallery && Array.isArray(data.gallery)) {
           setPhotos(data.gallery);
         }
       })
-      .catch(() => {
-        // Use default fallback photos
+      .catch((err) => {
+        console.error("Failed to fetch gallery from DB:", err);
       });
   }, []);
 

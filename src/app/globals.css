@@ -253,3 +253,21 @@ body {
 .group:hover .group-hover-zoom-in-out {
   animation: zoomInOut 3.5s ease-in-out infinite;
 }
+
+/* Stories section continuous slow auto-scroll carousel */
+@keyframes storyScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-story-scroll {
+  animation: storyScroll 45s linear infinite;
+}
+
+/* Hide scrollbar for all browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

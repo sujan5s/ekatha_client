@@ -125,81 +125,6 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
   faqs: [],
 };
 
-export const DEFAULT_GALLERY: GalleryContent[] = [
-  {
-    id: "g1",
-    imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
-    caption: "Health Checkup Camp in Mangaluru",
-    span: "TALL",
-  },
-  {
-    id: "g2",
-    imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=80",
-    caption: "Volunteer Distribution Drive",
-    span: "WIDE",
-  },
-  {
-    id: "g3",
-    imageUrl: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&q=80",
-    caption: "Direct Medical Aid Handover",
-    span: "NORMAL",
-  },
-  {
-    id: "g4",
-    imageUrl: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1200&q=80",
-    caption: "Elder Care & Health Visit",
-    span: "NORMAL",
-  },
-  {
-    id: "g5",
-    imageUrl: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80",
-    caption: "Relief Goods & Medicine Support",
-    span: "WIDE",
-  },
-  {
-    id: "g6",
-    imageUrl: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=1200&q=80",
-    caption: "Blood Donation Drive 2024",
-    span: "NORMAL",
-  },
-  {
-    id: "g7",
-    imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80",
-    caption: "Community Trust Annual Meet",
-    span: "NORMAL",
-  },
-  {
-    id: "g8",
-    imageUrl: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1200&q=80",
-    caption: "Child Health Initiative",
-    span: "WIDE",
-  },
-  {
-    id: "g9",
-    imageUrl: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80",
-    caption: "Emergency Medical Relief",
-    span: "NORMAL",
-  },
-  {
-    id: "g10",
-    imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=1200&q=80",
-    caption: "Volunteer Team Verification",
-    span: "TALL",
-  },
-  {
-    id: "g11",
-    imageUrl: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=1200&q=80",
-    caption: "Samaj Member Meetup",
-    span: "NORMAL",
-  },
-  {
-    id: "g12",
-    imageUrl: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80",
-    caption: "Youth Volunteer Network",
-    span: "NORMAL",
-  },
-];
-
 export const API_URL = process.env.API_URL ?? "http://localhost:8080";
 
 /**
@@ -214,7 +139,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       next: { revalidate: 60, tags: ["home"] },
     });
     if (!res.ok) {
-      return { ...DEFAULT_HOME_CONTENT, gallery: DEFAULT_GALLERY };
+      return DEFAULT_HOME_CONTENT;
     }
     const data = await res.json();
     return {
@@ -222,17 +147,14 @@ export async function getHomeContent(): Promise<HomeContent> {
       about: data.about ?? DEFAULT_HOME_CONTENT.about,
       stats: data.stats ?? DEFAULT_HOME_CONTENT.stats,
       impact: data.impact ?? DEFAULT_HOME_CONTENT.impact,
-      gallery:
-        data.gallery && data.gallery.length > 0
-          ? data.gallery
-          : DEFAULT_GALLERY,
-      testimonials: data.testimonials ?? DEFAULT_HOME_CONTENT.testimonials,
-      team: data.team ?? DEFAULT_HOME_CONTENT.team,
-      faqs: data.faqs ?? DEFAULT_HOME_CONTENT.faqs,
+      gallery: data.gallery ?? [],
+      testimonials: data.testimonials ?? [],
+      team: data.team ?? [],
+      faqs: data.faqs ?? [],
     };
   } catch (error) {
     console.error("[getHomeContent] API fetch failed, using default content:", error);
-    return { ...DEFAULT_HOME_CONTENT, gallery: DEFAULT_GALLERY };
+    return DEFAULT_HOME_CONTENT;
   }
 }
 
