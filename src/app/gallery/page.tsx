@@ -21,7 +21,8 @@ export default function DedicatedGalleryPage() {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/public/home")
+    const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+    fetch(`${API_URL}/api/public/home`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.gallery && Array.isArray(data.gallery)) {
