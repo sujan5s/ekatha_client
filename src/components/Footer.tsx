@@ -1,18 +1,18 @@
 import Newsletter from "./Newsletter";
 
 const quickLinks = [
-  { href: "#about", label: "About Us" },
-  { href: "#activities", label: "Our Activities" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#team", label: "Core Team" },
-  { href: "#apply", label: "Donate" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#activities", label: "Our Activities" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/#team", label: "Core Team" },
+  { href: "/#apply", label: "Donate" },
 ];
 
 const resources = [
-  { href: "#how", label: "How It Works" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#", label: "Transparency Report" },
-  { href: "#", label: "Eligibility" },
+  { href: "/#how", label: "How It Works" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#impact", label: "Transparency Report" },
+  { href: "/#apply", label: "Eligibility" },
 ];
 
 const socials = [

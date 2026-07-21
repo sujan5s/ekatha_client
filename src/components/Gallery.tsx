@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
+import SpecularButton from "./SpecularButton";
 import type { GalleryContent } from "@/lib/content";
 
 const spanClass: Record<GalleryContent["span"], string> = {
@@ -9,6 +10,8 @@ const spanClass: Record<GalleryContent["span"], string> = {
 };
 
 export default function Gallery({ gallery }: { gallery: GalleryContent[] }) {
+  const top7Shots = gallery.filter((shot) => shot.imageUrl).slice(0, 7);
+
   return (
     <section id="gallery" className="bg-cream px-8 py-28">
       <div className="mx-auto max-w-320">
@@ -21,11 +24,13 @@ export default function Gallery({ gallery }: { gallery: GalleryContent[] }) {
                 Community in <em className="text-saffron italic">action</em>
               </>
             }
+            sub="Highlighting stories of hope, health, and support across Karnataka."
+            subClassName="mx-auto max-w-130"
           />
         </div>
 
         <div className="mt-14 grid auto-rows-[220px] grid-cols-2 gap-4 min-[900px]:grid-cols-4">
-          {gallery.filter((shot) => shot.imageUrl).map((shot) => (
+          {top7Shots.map((shot) => (
             <div
               key={shot.id}
               data-cap={shot.caption}
@@ -40,6 +45,24 @@ export default function Gallery({ gallery }: { gallery: GalleryContent[] }) {
               />
             </div>
           ))}
+        </div>
+
+        <div className="reveal mt-12 flex justify-center text-center">
+          <SpecularButton
+            href="/gallery"
+            size="lg"
+            radius={9999}
+            tint="#e85d04"
+            tintOpacity={1}
+            textColor="#ffffff"
+            lineColor="#ffffff"
+            baseColor="#c44900"
+            intensity={1.2}
+            autoAnimate
+            speed={0.4}
+          >
+            View All Photos ({gallery.length > 0 ? gallery.length : 12}) →
+          </SpecularButton>
         </div>
       </div>
     </section>
