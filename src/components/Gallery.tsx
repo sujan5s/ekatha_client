@@ -3,11 +3,7 @@ import SectionHeading from "./SectionHeading";
 import SpecularButton from "./SpecularButton";
 import type { GalleryContent } from "@/lib/content";
 
-const spanClass: Record<GalleryContent["span"], string> = {
-  NORMAL: "",
-  TALL: "row-span-2",
-  WIDE: "col-span-2",
-};
+
 
 export default function Gallery({ gallery }: { gallery: GalleryContent[] }) {
   const top7Shots = gallery.filter((shot) => shot.imageUrl).slice(0, 7);
@@ -29,20 +25,21 @@ export default function Gallery({ gallery }: { gallery: GalleryContent[] }) {
           />
         </div>
 
-        <div className="mt-14 grid auto-rows-[220px] grid-cols-2 gap-4 min-[900px]:grid-cols-4">
+        <div className="mt-14 columns-2 min-[900px]:columns-4 gap-4 space-y-4">
           {top7Shots.map((shot) => (
             <div
               key={shot.id}
               data-cap={shot.caption}
-              className={`g-item reveal ${spanClass[shot.span]} group relative cursor-pointer overflow-hidden rounded-[18px]`}
+              className="g-item reveal group relative cursor-pointer overflow-hidden rounded-[18px] break-inside-avoid"
             >
-              <Image
-                src={shot.imageUrl}
-                alt={shot.caption}
-                fill
-                sizes="(max-width: 900px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-110"
-              />
+              <div className="relative w-full">
+                <img
+                  src={shot.imageUrl}
+                  alt={shot.caption || "Community photo"}
+                  className="w-full h-auto block object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
             </div>
           ))}
         </div>

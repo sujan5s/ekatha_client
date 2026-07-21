@@ -10,11 +10,6 @@ import ScrollProgress from "@/components/ScrollProgress";
 import SpecularButton from "@/components/SpecularButton";
 import { type GalleryContent } from "@/lib/content";
 
-const spanClass: Record<GalleryContent["span"], string> = {
-  NORMAL: "col-span-1 row-span-1",
-  TALL: "col-span-1 row-span-2 min-h-[440px]",
-  WIDE: "col-span-1 min-[640px]:col-span-2 row-span-1",
-};
 
 export default function DedicatedGalleryPage() {
   const [photos, setPhotos] = useState<GalleryContent[]>([]);
@@ -78,33 +73,32 @@ export default function DedicatedGalleryPage() {
           </p>
         </div>
 
-        {/* Bento Grid Gallery */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-4 auto-rows-[240px] gap-4.5">
+        {/* Masonry Gallery */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
           {photos.map((photo, index) => (
             <div
               key={photo.id || index}
               onClick={() => setSelectedPhoto(index)}
-              className={`group relative cursor-pointer overflow-hidden rounded-2xl bg-[#EFEAE4] shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl ${
-                spanClass[photo.span] || "col-span-1 row-span-1"
-              }`}
+              className="group relative cursor-pointer overflow-hidden rounded-2xl bg-[#EFEAE4] shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl break-inside-avoid"
             >
-              <Image
-                src={photo.imageUrl}
-                alt={photo.caption || "Community photo"}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-108"
-              />
+              <div className="relative w-full">
+                <img
+                  src={photo.imageUrl}
+                  alt={photo.caption || "Community photo"}
+                  className="w-full h-auto block object-cover transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
+                  loading="lazy"
+                />
 
-              {/* Overlay with Caption */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-5">
-                <div className="transform translate-y-3 transition-transform duration-300 group-hover:translate-y-0">
-                  <span className="inline-block bg-saffron/90 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-2">
-                    Photo #{index + 1}
-                  </span>
-                  <p className="text-white text-sm font-semibold leading-snug">
-                    {photo.caption || "Community Support"}
-                  </p>
+                {/* Overlay with Caption */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-5">
+                  <div className="transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                    <span className="inline-block bg-saffron/90 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-2 shadow-sm">
+                      Photo #{index + 1}
+                    </span>
+                    <p className="text-white text-sm font-semibold leading-snug drop-shadow-md">
+                      {photo.caption || "Community Support"}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
