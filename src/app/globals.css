@@ -202,14 +202,47 @@ body {
   background-size: 32px 32px;
 }
 
-/* Donate CTA — heart tile */
+/* Donate CTA — live animated heart tile & floating hearts */
 .dcta-hearts::before {
   content: "";
   position: absolute;
-  inset: 0;
-  opacity: 0.08;
+  inset: -20px;
+  opacity: 0.1;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 10c-4-8-18-6-18 4 0 8 18 20 18 20s18-12 18-20c0-10-14-12-18-4z' fill='%23fff'/%3E%3C/svg%3E");
-  background-size: 80px;
+  background-size: 72px;
+  animation: heartPulsePattern 5s ease-in-out infinite;
+}
+
+@keyframes heartPulsePattern {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.08;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.16;
+  }
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100%) scale(0.7) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-130%) scale(1.2) rotate(18deg);
+    opacity: 0;
+  }
+}
+
+.animate-float-heart {
+  animation: floatHeart linear infinite;
 }
 
 /* Form success pop */

@@ -1,5 +1,15 @@
 import SpecularButton from "./SpecularButton";
 
+const floatingHearts = [
+  { left: "8%", size: "26px", duration: "7s", delay: "0s" },
+  { left: "20%", size: "36px", duration: "9s", delay: "2.5s" },
+  { left: "35%", size: "22px", duration: "6.5s", delay: "4.5s" },
+  { left: "50%", size: "32px", duration: "8.5s", delay: "1s" },
+  { left: "65%", size: "40px", duration: "10s", delay: "3s" },
+  { left: "78%", size: "24px", duration: "7.5s", delay: "5.5s" },
+  { left: "90%", size: "34px", duration: "9.5s", delay: "1.8s" },
+];
+
 export default function DonateCta() {
   return (
     <section
@@ -9,6 +19,25 @@ export default function DonateCta() {
         background: "linear-gradient(120deg,#C44900,#E85D04 55%,#D4A017)",
       }}
     >
+      {/* Floating Live Hearts Background Elements */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {floatingHearts.map((h, i) => (
+          <span
+            key={i}
+            className="animate-float-heart absolute text-white/40 select-none"
+            style={{
+              left: h.left,
+              bottom: "0px",
+              fontSize: h.size,
+              animationDuration: h.duration,
+              animationDelay: h.delay,
+            }}
+          >
+            ♡
+          </span>
+        ))}
+      </div>
+
       <div className="reveal relative mx-auto max-w-205 text-center">
         <h2 className="font-display text-[clamp(30px,4.5vw,46px)] leading-[1.15] font-semibold text-white">
           Your contribution can save a life today.
