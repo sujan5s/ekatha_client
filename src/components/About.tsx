@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { AboutContent } from "@/lib/content";
 import SpecularButton from "./SpecularButton";
-
+//hi
 const features = [
   {
     icon: "✦",
