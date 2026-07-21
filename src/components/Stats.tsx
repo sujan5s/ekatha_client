@@ -14,7 +14,7 @@ function Stat({
   index: number;
   total: number;
 }) {
-  const value = useCounter(stat.value, 2200, trigger);
+  const value = useCounter(stat.value, 4000, trigger);
 
   // Dividers sit between columns only, dropping at the row edge (which moves
   // from the last cell to the 2nd once the grid is two-up).
