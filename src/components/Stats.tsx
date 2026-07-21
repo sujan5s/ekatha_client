@@ -26,13 +26,13 @@ function Stat({
       : "border-r border-[#EDE8E3]";
 
   return (
-    <div className={`reveal d${index + 1} px-6 py-7 text-center ${divider}`}>
-      <div className="mb-[10px] text-[26px]">{stat.icon}</div>
-      <div className="font-display text-[52px] leading-none font-bold text-saffron">
+    <div className={`reveal d${index + 1} px-2 sm:px-6 py-5 sm:py-7 text-center ${divider}`}>
+      <div className="mb-2 sm:mb-[10px] text-xl sm:text-[26px]">{stat.icon}</div>
+      <div className="font-display text-[clamp(18px,5vw,52px)] sm:text-[clamp(24px,7vw,52px)] leading-none font-bold text-saffron whitespace-nowrap tracking-tight sm:tracking-normal">
         {value.toLocaleString()}
         {stat.suffix}
       </div>
-      <div className="mt-2 text-[13px] font-medium tracking-[0.02em] text-muted">
+      <div className="mt-1.5 sm:mt-2 text-xs sm:text-[13px] font-medium tracking-[0.02em] text-muted leading-tight">
         {stat.label}
       </div>
     </div>
@@ -47,7 +47,7 @@ export default function Stats({ stats }: { stats: StatContent[] }) {
       ref={ref}
       className="relative z-5 border-t-4 border-saffron bg-white shadow-[0_8px_48px_rgba(0,0,0,0.07)]"
     >
-      <div className="mx-auto grid max-w-320 grid-cols-2 px-8 py-4 min-[900px]:grid-cols-4">
+      <div className="mx-auto grid max-w-320 grid-cols-2 px-2 sm:px-8 py-2 sm:py-4 min-[900px]:grid-cols-4">
         {stats.map((stat, i) => (
           <Stat
             key={stat.id}
