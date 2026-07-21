@@ -28,7 +28,7 @@ export default function SectionHeading({
         {tag}
       </span>
       <h2
-        className={`mt-4 font-display text-[clamp(32px,4vw,48px)] leading-[1.14] font-semibold ${
+        className={`mt-4 font-display text-[clamp(24px,5vw,48px)] leading-[1.18] sm:leading-[1.14] font-semibold ${
           onDark ? "text-white" : "text-dark"
         }`}
       >

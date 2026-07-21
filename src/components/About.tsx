@@ -22,9 +22,9 @@ const features = [
 
 export default function About({ about }: { about?: AboutContent }) {
   return (
-    <section id="about" className="bg-cream px-8 py-28">
+    <section id="about" className="bg-cream px-4 sm:px-8 py-16 sm:py-28 overflow-hidden">
       <div className="mx-auto max-w-320">
-        <div className="grid items-center gap-20 min-[900px]:grid-cols-2">
+        <div className="grid items-center gap-10 sm:gap-20 min-[900px]:grid-cols-2">
           <div className="reveal-left relative">
             <div className="group overflow-hidden rounded-[28px] bg-[#E8E0D5] shadow-[0_32px_80px_rgba(0,0,0,0.14)]">
               {about?.imageUrl ? (
@@ -33,18 +33,18 @@ export default function About({ about }: { about?: AboutContent }) {
                   alt="Community support"
                   width={700}
                   height={520}
-                  className="h-130 w-full object-cover transition-transform duration-900 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
+                  className="h-80 sm:h-130 w-full object-cover transition-transform duration-900 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
                 />
               ) : (
-                <div className="h-130 w-full" />
+                <div className="h-80 sm:h-130 w-full" />
               )}
             </div>
 
-            <div className="reveal-scale d3 float-badge absolute -top-6 -right-6 rounded-[20px] bg-gradient-to-br from-saffron to-saffron-dark px-8 py-[22px] text-center text-white shadow-[0_16px_48px_rgba(232,93,4,0.35)]">
-              <div className="font-display text-[38px] leading-none font-bold">
+            <div className="reveal-scale d3 float-badge absolute -top-4 right-2 sm:-top-6 sm:-right-6 rounded-[20px] bg-gradient-to-br from-saffron to-saffron-dark px-5 sm:px-8 py-3.5 sm:py-[22px] text-center text-white shadow-[0_16px_48px_rgba(232,93,4,0.35)]">
+              <div className="font-display text-2xl sm:text-[38px] leading-none font-bold">
                 100%
               </div>
-              <div className="mt-1.5 text-xs font-semibold opacity-90">
+              <div className="mt-1 text-[10px] sm:text-xs font-semibold opacity-90">
                 Direct to
                 <br />
                 Beneficiary
@@ -52,7 +52,7 @@ export default function About({ about }: { about?: AboutContent }) {
             </div>
 
             {about?.image2Url ? (
-              <div className="reveal-scale d4 absolute -bottom-10 -left-10 h-45 w-45 overflow-hidden rounded-[22px] border-6 border-cream shadow-[0_20px_48px_rgba(0,0,0,0.18)]">
+              <div className="reveal-scale d4 absolute -bottom-6 left-2 sm:-bottom-10 sm:-left-10 h-28 w-28 sm:h-45 sm:w-45 overflow-hidden rounded-[18px] sm:rounded-[22px] border-4 sm:border-6 border-cream shadow-[0_20px_48px_rgba(0,0,0,0.18)] hidden xs:block">
                 <Image
                   src={about.image2Url}
                   alt="Helping hands"

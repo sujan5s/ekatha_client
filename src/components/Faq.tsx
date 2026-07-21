@@ -35,6 +35,7 @@ export default function Faq({ faqs }: { faqs: FaqContent[] }) {
                   aria-expanded={open}
                   onClick={() => setOpenIndex(open ? null : i)}
                   className="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left text-base font-bold text-dark"
+                  suppressHydrationWarning
                 >
                   {faq.question}
                   <span

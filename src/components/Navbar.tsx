@@ -33,22 +33,22 @@ export default function Navbar() {
   }, [isHomePage]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-100 pointer-events-none flex justify-center px-2 sm:px-4 pt-2 sm:pt-3 transition-all duration-500">
+    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center px-2 sm:px-4 pt-2 sm:pt-3 transition-all duration-500 w-full max-w-full overflow-hidden">
       <nav
         className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ${
           scrolled
-            ? "h-14 sm:h-16 w-full max-w-5xl rounded-full bg-white/85 px-4 sm:px-6 shadow-lg shadow-black/5 backdrop-blur-md border border-white/50 ring-1 ring-black/5"
-            : "h-16 sm:h-20 w-full max-w-7xl px-4 sm:px-8 bg-transparent"
+            ? "h-14 sm:h-16 w-full max-w-5xl rounded-full bg-white/85 px-3 sm:px-6 shadow-lg shadow-black/5 backdrop-blur-md border border-white/50 ring-1 ring-black/5"
+            : "h-16 sm:h-20 w-full max-w-7xl px-3 sm:px-8 bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-          <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_4px_16px_rgba(232,93,4,0.3)]">
-            <span className="text-xs sm:text-sm font-extrabold tracking-[-0.5px] text-white">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_4px_16px_rgba(232,93,4,0.3)]">
+            <span className="text-[11px] sm:text-sm font-extrabold tracking-[-0.5px] text-white">
               TE
             </span>
           </div>
           <span
-            className={`font-display text-xl sm:text-2xl font-bold whitespace-nowrap transition-colors duration-300 ${
+            className={`font-display text-lg sm:text-2xl font-bold whitespace-nowrap transition-colors duration-300 ${
               scrolled ? "text-dark" : "text-white"
             }`}
           >
@@ -70,21 +70,23 @@ export default function Navbar() {
           ))}
         </div>
 
-        <SpecularButton
-          href="/#apply"
-          size="sm"
-          radius={9999}
-          tint="#e85d04"
-          tintOpacity={1}
-          textColor="#ffffff"
-          lineColor="#ffffff"
-          baseColor="#c44900"
-          intensity={1.2}
-          autoAnimate
-          speed={0.4}
-        >
-          Donate ♡
-        </SpecularButton>
+        <div className="shrink-0 max-w-[120px] sm:max-w-none">
+          <SpecularButton
+            href="/#apply"
+            size="sm"
+            radius={9999}
+            tint="#e85d04"
+            tintOpacity={1}
+            textColor="#ffffff"
+            lineColor="#ffffff"
+            baseColor="#c44900"
+            intensity={1.2}
+            autoAnimate
+            speed={0.4}
+          >
+            Donate ♡
+          </SpecularButton>
+        </div>
       </nav>
     </header>
   );

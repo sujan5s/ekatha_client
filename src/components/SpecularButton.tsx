@@ -322,6 +322,7 @@ export default function SpecularButton({
         onClick={onClick as (e: React.MouseEvent<HTMLAnchorElement>) => void}
         className={`specular-button specular-button--${size}${className ? ` ${className}` : ""}`}
         style={mergedStyle}
+        suppressHydrationWarning
       >
         <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
         <span className="specular-button__label">{children}</span>
@@ -337,6 +338,7 @@ export default function SpecularButton({
       onClick={onClick as (e: React.MouseEvent<HTMLButtonElement>) => void}
       className={`specular-button specular-button--${size}${className ? ` ${className}` : ""}`}
       style={mergedStyle}
+      suppressHydrationWarning
     >
       <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
       <span className="specular-button__label">{children}</span>

@@ -61,6 +61,24 @@
   padding: 18px 40px;
 }
 
+@media (max-width: 640px) {
+  .specular-button {
+    max-width: 100%;
+  }
+  .specular-button--lg {
+    font-size: 0.95rem;
+    padding: 13px 26px;
+  }
+  .specular-button--md {
+    font-size: 0.9rem;
+    padding: 11px 20px;
+  }
+  .specular-button--sm {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+}
+
 /* Canvas extends past the button so the rim glow can bleed outside the edge */
 .specular-button__fx {
   position: absolute;

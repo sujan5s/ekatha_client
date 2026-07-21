@@ -108,18 +108,19 @@ export default function ApplyForm() {
               key={value}
               type="button"
               onClick={() => switchTab(value)}
-              className={`cursor-pointer rounded-full px-[30px] py-3 text-sm font-semibold transition duration-300 ${
+              className={`cursor-pointer rounded-full px-5 sm:px-[30px] py-3 text-sm font-semibold transition duration-300 ${
                 tab === value
                   ? "bg-saffron text-white shadow-[0_4px_16px_rgba(232,93,4,0.3)]"
                   : "text-muted"
               }`}
+              suppressHydrationWarning
             >
               {label}
             </button>
           ))}
         </div>
 
-        <div className="reveal mx-auto max-w-240 rounded-[28px] bg-white p-13 shadow-[0_8px_56px_rgba(0,0,0,0.08)]">
+        <div className="reveal mx-auto max-w-240 rounded-[28px] bg-white p-5 sm:p-13 shadow-[0_8px_56px_rgba(0,0,0,0.08)]">
           {submitted ? (
             <div className="pop-in py-10 text-center">
               <div className="mb-5 text-7xl">🙏</div>
