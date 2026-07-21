@@ -235,3 +235,21 @@ body {
 .nav-link:hover::after {
   width: 100%;
 }
+
+/* Impact progress bar shimmer */
+@keyframes barShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.animate-bar-shimmer {
+  animation: barShimmer 1.8s ease-in-out infinite;
+}
+
+/* Continuous breathing zoom in-out effect on hover */
+@keyframes zoomInOut {
+  0%, 100% { transform: scale(1.03); }
+  50% { transform: scale(1.12); }
+}
+.group:hover .group-hover-zoom-in-out {
+  animation: zoomInOut 3.5s ease-in-out infinite;
+}
