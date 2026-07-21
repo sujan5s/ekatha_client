@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SpecularButton from "@/components/SpecularButton";
-import { useScrollY } from "@/lib/hooks";
 
 const links = [
   { href: "/#about", label: "About" },
