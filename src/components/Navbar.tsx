@@ -1,5 +1,6 @@
 "use client";
 
+import SpecularButton from "@/components/SpecularButton";
 import { useScrollY } from "@/lib/hooks";
 
 const links = [
@@ -51,12 +52,21 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a
+        <SpecularButton
           href="#apply"
-          className="inline-flex items-center gap-2 rounded-full bg-saffron px-5 py-2.5 text-sm font-bold text-white transition duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(232,93,4,0.35)]"
+          size="sm"
+          radius={9999}
+          tint="#e85d04"
+          tintOpacity={1}
+          textColor="#ffffff"
+          lineColor="#ffffff"
+          baseColor="#c44900"
+          intensity={1.2}
+          autoAnimate
+          speed={0.4}
         >
           Donate ♡
-        </a>
+        </SpecularButton>
       </nav>
     </header>
   );

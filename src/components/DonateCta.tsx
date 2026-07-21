@@ -1,3 +1,5 @@
+import SpecularButton from "./SpecularButton";
+
 export default function DonateCta() {
   return (
     <section
@@ -16,18 +18,37 @@ export default function DonateCta() {
           emergency. Join 1,200+ members building a safety net for our community.
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-4">
-          <a
+          <SpecularButton
             href="#apply"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-10 py-4 text-[15px] font-bold text-saffron-dark transition duration-200 hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_16px_44px_rgba(0,0,0,0.25)]"
+            size="lg"
+            radius={9999}
+            tint="#ffffff"
+            tintOpacity={1}
+            textColor="#c44900"
+            lineColor="#ffffff"
+            baseColor="#e85d04"
+            intensity={1.2}
+            autoAnimate
+            speed={0.4}
           >
             ♡ Donate Now
-          </a>
-          <a
+          </SpecularButton>
+          <SpecularButton
             href="#apply"
-            className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-white/60 px-9 py-4 text-[15px] font-semibold text-white transition duration-200 hover:-translate-y-[3px] hover:bg-white/15"
+            size="lg"
+            radius={9999}
+            tint="#ffffff"
+            tintOpacity={0.15}
+            blur={12}
+            textColor="#ffffff"
+            lineColor="#ffffff"
+            baseColor="#ffffff"
+            intensity={1}
+            followMouse
+            proximity={300}
           >
             Become a Member →
-          </a>
+          </SpecularButton>
         </div>
       </div>
     </section>

@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import type { HeroContent } from "@/lib/content";
 import HeroSlideshow from "./HeroSlideshow";
 
+import SpecularButton from "./SpecularButton";
+
 export default function Hero({ hero }: { hero: HeroContent }) {
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -58,18 +60,37 @@ export default function Hero({ hero }: { hero: HeroContent }) {
             className="fade-up flex flex-wrap gap-4"
             style={{ animationDelay: "0.75s" }}
           >
-            <a
+            <SpecularButton
               href="#apply"
-              className="inline-flex items-center gap-2 rounded-full bg-saffron px-9 py-4 text-[15px] font-bold text-white shadow-[0_8px_28px_rgba(232,93,4,0.32)] transition duration-200 hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_16px_44px_rgba(232,93,4,0.48)]"
+              size="lg"
+              radius={9999}
+              tint="#e85d04"
+              tintOpacity={1}
+              textColor="#ffffff"
+              lineColor="#ffffff"
+              baseColor="#c44900"
+              intensity={1.2}
+              autoAnimate
+              speed={0.4}
             >
               {hero.ctaPrimary}
-            </a>
-            <a
+            </SpecularButton>
+            <SpecularButton
               href="#about"
-              className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-white/10 px-[34px] py-4 text-[15px] font-semibold text-white backdrop-blur-lg transition duration-200 hover:-translate-y-[3px] hover:bg-white/20"
+              size="lg"
+              radius={9999}
+              tint="#ffffff"
+              tintOpacity={0.12}
+              blur={16}
+              textColor="#ffffff"
+              lineColor="#ffffff"
+              baseColor="#888888"
+              intensity={1}
+              followMouse
+              proximity={300}
             >
               {hero.ctaGhost}
-            </a>
+            </SpecularButton>
           </div>
 
           <div

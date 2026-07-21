@@ -1,4 +1,5 @@
 import SectionHeading from "./SectionHeading";
+import SpecularButton from "./SpecularButton";
 
 const steps = [
   {
@@ -62,13 +63,22 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <div className="reveal mt-16 text-center">
-          <a
+        <div className="reveal mt-16 flex justify-center text-center">
+          <SpecularButton
             href="#apply"
-            className="inline-flex items-center gap-2.5 rounded-full bg-saffron px-[42px] py-[17px] text-[15px] font-bold text-white shadow-[0_8px_28px_rgba(232,93,4,0.32)] transition duration-200 hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_16px_44px_rgba(232,93,4,0.48)]"
+            size="lg"
+            radius={9999}
+            tint="#e85d04"
+            tintOpacity={1}
+            textColor="#ffffff"
+            lineColor="#ffffff"
+            baseColor="#c44900"
+            intensity={1.2}
+            autoAnimate
+            speed={0.4}
           >
             Apply for Assistance →
-          </a>
+          </SpecularButton>
         </div>
       </div>
     </section>

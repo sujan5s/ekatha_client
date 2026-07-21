@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { AboutContent } from "@/lib/content";
+import SpecularButton from "./SpecularButton";
 
 const features = [
   {
@@ -105,12 +106,22 @@ export default function About({ about }: { about?: AboutContent }) {
               ))}
             </div>
 
-            <a
-              href="#activities"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-forest px-8 py-[15px] text-sm font-semibold text-white transition duration-200 hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(26,71,42,0.3)]"
-            >
-              See Our Activities →
-            </a>
+            <div className="mt-10">
+              <SpecularButton
+                href="#activities"
+                size="md"
+                radius={9999}
+                tint="#1a472a"
+                tintOpacity={1}
+                textColor="#ffffff"
+                lineColor="#88d49e"
+                baseColor="#1a472a"
+                intensity={1.2}
+                followMouse
+              >
+                See Our Activities →
+              </SpecularButton>
+            </div>
           </div>
         </div>
       </div>

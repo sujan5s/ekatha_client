@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
+import SpecularButton from "./SpecularButton";
 import SectionHeading from "./SectionHeading";
 
 type Tab = "help" | "donate";
@@ -204,13 +205,23 @@ export default function ApplyForm() {
                   />
                 </Field>
                 <div className="min-[900px]:col-span-2">
-                  <button
+                  <SpecularButton
                     type="submit"
                     disabled={submitting}
-                    className="w-full cursor-pointer rounded-[14px] bg-saffron p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(232,93,4,0.3)] disabled:opacity-60"
+                    size="lg"
+                    radius={14}
+                    tint="#e85d04"
+                    tintOpacity={1}
+                    textColor="#ffffff"
+                    lineColor="#ffffff"
+                    baseColor="#c44900"
+                    intensity={1.2}
+                    autoAnimate
+                    speed={0.4}
+                    className="w-full"
                   >
                     {submitting ? "Sending…" : "Submit Application →"}
-                  </button>
+                  </SpecularButton>
                   {error && (
                     <p className="mt-3 text-center text-sm font-semibold text-[#B3261E]">
                       {error}
@@ -305,13 +316,23 @@ export default function ApplyForm() {
                   />
                 </Field>
                 <div className="min-[900px]:col-span-2">
-                  <button
+                  <SpecularButton
                     type="submit"
                     disabled={submitting}
-                    className="w-full cursor-pointer rounded-[14px] bg-forest p-[17px] text-base font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_12px_36px_rgba(26,71,42,0.3)] disabled:opacity-60"
+                    size="lg"
+                    radius={14}
+                    tint="#1a472a"
+                    tintOpacity={1}
+                    textColor="#ffffff"
+                    lineColor="#ffffff"
+                    baseColor="#2d6a4f"
+                    intensity={1.2}
+                    autoAnimate
+                    speed={0.4}
+                    className="w-full"
                   >
                     {submitting ? "Sending…" : "Donate to Team Ekata ♡"}
-                  </button>
+                  </SpecularButton>
                   {error && (
                     <p className="mt-3 text-center text-sm font-semibold text-[#B3261E]">
                       {error}
