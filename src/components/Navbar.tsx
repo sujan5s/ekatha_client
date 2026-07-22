@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import SpecularButton from "@/components/SpecularButton";
 
@@ -41,11 +42,16 @@ export default function Navbar() {
             : "h-16 sm:h-20 w-full max-w-7xl px-3 sm:px-8 bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_4px_16px_rgba(232,93,4,0.3)]">
-            <span className="text-[11px] sm:text-sm font-extrabold tracking-[-0.5px] text-white">
-              TE
-            </span>
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
+          <div className="relative flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/10 shadow-[0_4px_16px_rgba(232,93,4,0.25)] border border-white/20">
+            <Image
+              src="/logo.webp"
+              alt="Team Ekatha Logo"
+              width={40}
+              height={40}
+              className="h-full w-full object-cover"
+              priority
+            />
           </div>
           <span
             className={`font-display text-lg sm:text-2xl font-bold whitespace-nowrap transition-colors duration-300 ${

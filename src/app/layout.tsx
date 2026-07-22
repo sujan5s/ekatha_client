@@ -24,18 +24,25 @@ const description =
   "A community-led medical charity trust of Ganiga Samaj, Karnataka. 100% of every rupee goes directly to verified families facing medical hardship.";
 
 export const metadata: Metadata = {
-  title: "Team Ekata — Ganiga Samaj Community Trust",
+  title: "Team Ekatha — Ganiga Samaj Community Trust",
   description,
+  icons: {
+    icon: "/icon.webp?v=2",
+    shortcut: "/icon.webp?v=2",
+    apple: "/icon.webp?v=2",
+  },
   openGraph: {
-    title: "Team Ekata — Ganiga Samaj Community Trust",
+    title: "Team Ekatha — Ganiga Samaj Community Trust",
     description,
     type: "website",
-    siteName: "Team Ekata",
+    siteName: "Team Ekatha",
+    images: [{ url: "/logo.webp" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Team Ekata — Ganiga Samaj Community Trust",
+    title: "Team Ekatha — Ganiga Samaj Community Trust",
     description,
+    images: ["/logo.webp"],
   },
 };
 
