@@ -82,7 +82,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
     headlineEnd: "in deed.",
     subText:
       "We are Team Ekata — a community-led trust where members of Ganiga Samaj give what they can, and together we lift families through medical hardship. No middlemen. 100% direct support.",
-    ctaPrimary: "♡ Donate Now",
+    ctaPrimary: "♡ Contribute Now",
     ctaGhost: "Our Mission →",
     trustText: "1,200+ members supporting our community across Karnataka",
     slides: [
@@ -102,7 +102,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
   },
   stats: [
     { id: "1", icon: "₹", value: 45, suffix: "L+", label: "Medical Aid Disbursed" },
-    { id: "2", icon: "👥", value: 1200, suffix: "+", label: "Active Donors" },
+    { id: "2", icon: "👥", value: 1200, suffix: "+", label: "Active Contributors" },
     { id: "3", icon: "🏥", value: 340, suffix: "+", label: "Families Supported" },
     { id: "4", icon: "⚡", value: 100, suffix: "%", label: "Direct Transfer" },
   ],

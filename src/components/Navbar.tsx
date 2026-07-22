@@ -90,7 +90,7 @@ export default function Navbar() {
             autoAnimate
             speed={0.4}
           >
-            Donate ♡
+            Contribute ♡
           </SpecularButton>
         </div>
       </nav>

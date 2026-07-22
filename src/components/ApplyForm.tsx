@@ -101,7 +101,7 @@ export default function ApplyForm() {
           {(
             [
               ["help", "🙏 Apply for Help"],
-              ["donate", "♡ Donate / Join"],
+              ["donate", "♡ Contribute / Join"],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -291,7 +291,7 @@ export default function ApplyForm() {
                     ))}
                   </div>
                 </Field>
-                <Field label="Donation Amount (₹) *">
+                <Field label="Contribution Amount (₹) *">
                   <input
                     name="amount"
                     className={fieldClass}
@@ -332,7 +332,7 @@ export default function ApplyForm() {
                     speed={0.4}
                     className="w-full"
                   >
-                    {submitting ? "Sending…" : "Donate to Team Ekata ♡"}
+                    {submitting ? "Sending…" : "Contribute to Team Ekata ♡"}
                   </SpecularButton>
                   {error && (
                     <p className="mt-3 text-center text-sm font-semibold text-[#B3261E]">

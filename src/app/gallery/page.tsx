@@ -127,7 +127,7 @@ export default function DedicatedGalleryPage() {
               autoAnimate
               speed={0.4}
             >
-              ♡ Donate Now
+              ♡ Contribute Now
             </SpecularButton>
           </div>
         </div>

@@ -5,7 +5,7 @@ const quickLinks = [
   { href: "/#activities", label: "Our Activities" },
   { href: "/gallery", label: "Gallery" },
   { href: "/#team", label: "Core Team" },
-  { href: "/#apply", label: "Donate" },
+  { href: "/#apply", label: "Contribute" },
 ];
 
 const resources = [

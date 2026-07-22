@@ -60,7 +60,7 @@ export default function DonateCta() {
             autoAnimate
             speed={0.4}
           >
-            ♡ Donate Now
+            ♡ Contribute Now
           </SpecularButton>
           <SpecularButton
             href="#apply"
